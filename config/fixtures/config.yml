@@ -1,0 +1,8 @@
+collection:
+  - "durudex/user"
+  - "durudex/post"
+
+language:
+  go:
+    package: "generated"
+    directory: "generated"
