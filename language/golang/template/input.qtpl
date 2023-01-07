@@ -1,0 +1,26 @@
+{% import (
+	"github.com/durudex/polygen/language/golang/adapter"
+
+	"github.com/durudex/go-polylang/ast"
+	"github.com/iancoleman/strcase"
+) %}
+
+{% func Input(coll, name string, params []*ast.Field) %}
+type {%s strcase.ToCamel(coll) %}{%s strcase.ToCamel(name) %}Input struct {
+	{%- for _, param := range params -%}
+	{%s strcase.ToCamel(param.Name) %} {% stripspace %}
+	{% switch %}
+	{% case param.Type.Array %}
+		[]
+	{% case param.Type.Basic != 0 %}
+		{% if param.Optional && !param.Type.Array %}*{%- endif -%}
+		{%s adapter.TypeToString[param.Type.Basic] %}
+	{% case param.Type.Map != nil %}
+		map[{%s adapter.TypeToString[param.Type.Map.Key] %}]
+		{%s adapter.TypeToString[param.Type.Map.Value.Basic] %}
+	{% endswitch %}
+	`json:"{%s param.Name %}{% if param.Optional %},omitempty{% endif %}"`
+	{% endstripspace %}
+	{%- endfor -%}
+}
+{% endfunc %}
