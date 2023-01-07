@@ -1,6 +1,17 @@
+github.com/alecthomas/assert/v2 v2.0.3 h1:WKqJODfOiQG0nEJKFKzDIG3E29CN2/4zR9XGJzKIkbg=
+github.com/alecthomas/participle/v2 v2.0.0-beta.5 h1:y6dsSYVb1G5eK6mgmy+BgI3Mw35a3WghArZ/Hbebrjo=
+github.com/alecthomas/participle/v2 v2.0.0-beta.5/go.mod h1:RC764t6n4L8D8ITAJv0qdokritYSNR3wV5cVwmIEaMM=
+github.com/alecthomas/repr v0.1.0 h1:ENn2e1+J3k09gyj2shc0dHr/yjaWSHRlrJ4DPMevDqE=
 github.com/coreos/go-systemd/v22 v22.3.3-0.20220203105225-a9a7ef127534/go.mod h1:Y58oyj3AT4RCenI/lSvhwexgC+NSVTIJ3seZv2GcEnc=
 github.com/cpuguy83/go-md2man/v2 v2.0.2/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
+github.com/durudex/go-polybase v0.0.0-20230101154909-ddda04565735 h1:BB0Baftijl4WCgpfJ2LygDGWJ8eY4a3VMn+7NVNJOB4=
+github.com/durudex/go-polybase v0.0.0-20230101154909-ddda04565735/go.mod h1:4VSG2cSGkFirmbRiLqnlToJEBt1WLoG2SGmV/DC72RQ=
+github.com/durudex/go-polylang v0.0.0-20230107173233-3b6bccca09c3 h1:glMvCPtcR7pZzcDTEqvxbNvE0dmF/GnEL2HVUL7KFE8=
+github.com/durudex/go-polylang v0.0.0-20230107173233-3b6bccca09c3/go.mod h1:pm/l+1LJ11mEO4qu5okilKwhkjpQCuYczciaMCixE74=
+github.com/durudex/go-polylang v0.0.0-20230107180402-fae5fcac0a78 h1:YRtd0UgyMbYB11tBFuM3NT2OnsZLSbAb1zWC/1aRePs=
+github.com/durudex/go-polylang v0.0.0-20230107180402-fae5fcac0a78/go.mod h1:pm/l+1LJ11mEO4qu5okilKwhkjpQCuYczciaMCixE74=
 github.com/godbus/dbus/v5 v5.0.4/go.mod h1:xhWf0FNVPg57R7Z0UbKHbJfkEywrmjJnf7w5xrFpKfA=
+github.com/hexops/gotextdiff v1.0.3 h1:gitA9+qJrrTCsiCl7+kh75nPqQt1cx4ZkudSTLoUqJM=
 github.com/inconshreveable/mousetrap v1.0.1 h1:U3uMjPSQEBMNp1lFxmllqCPM6P5u/Xq7Pgzkat/bFNc=
 github.com/inconshreveable/mousetrap v1.0.1/go.mod h1:vpF70FUmC8bwa3OWnCshd2FqLfsEA9PFc4w1p2J65bw=
 github.com/mattn/go-colorable v0.1.12 h1:jF+Du6AlPIjs2BiUiQlKOX0rt3SujHxPnksPKZbaA40=
