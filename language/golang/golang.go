@@ -9,21 +9,20 @@ package golang
 
 import (
 	"os"
+	"os/exec"
+	"path/filepath"
 
 	"github.com/durudex/polygen"
 	"github.com/durudex/polygen/config"
+	"github.com/durudex/polygen/language"
 	"github.com/durudex/polygen/language/golang/template"
 
 	"github.com/iancoleman/strcase"
 )
 
-type Golang interface {
-	Generate(*polygen.ParsedCollection) error
-}
-
 type golang struct{ cfg *config.Go }
 
-func New(cfg *config.Go) Golang {
+func New(cfg *config.Go) language.Codegen {
 	return &golang{cfg: cfg}
 }
 
@@ -36,7 +35,17 @@ func (g *golang) Generate(coll *polygen.ParsedCollection) error {
 	}
 	defer f.Close()
 
+	template.WriteHeader(f, coll.Name)
 	template.WriteModel(f, coll.Models)
 
 	return nil
+}
+
+func (g *golang) Finish() error {
+	dir, err := os.Getwd()
+	if err != nil {
+		return err
+	}
+
+	return exec.Command("go", "fmt", filepath.Join(dir, g.cfg.Directory)).Run()
 }
