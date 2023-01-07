@@ -24,11 +24,6 @@ type GenesisCollection struct {
 	Code string `json:"code"`
 }
 
-type ParsedCollection struct {
-	Models    []*polygen.Model
-	Functions []*ast.Function
-}
-
 func (c *codegen) astCollection(ctx context.Context, id string) (*ast.Collection, error) {
 	var response polybase.SingleResponse[GenesisCollection]
 
@@ -43,8 +38,9 @@ func (c *codegen) astCollection(ctx context.Context, id string) (*ast.Collection
 	return parser.ParseString("", response.Data.Code)
 }
 
-func (c *codegen) parseCollection(v *ast.Collection) *ParsedCollection {
-	collection := &ParsedCollection{
+func (c *codegen) parseCollection(v *ast.Collection) *polygen.ParsedCollection {
+	collection := &polygen.ParsedCollection{
+		Name:   v.Name,
 		Models: make([]*polygen.Model, 1),
 	}
 

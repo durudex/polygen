@@ -13,3 +13,9 @@ type Model struct {
 	Name   string
 	Fields []*ast.Field
 }
+
+type ParsedCollection struct {
+	Name      string
+	Models    []*Model
+	Functions []*ast.Function
+}

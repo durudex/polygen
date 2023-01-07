@@ -4,7 +4,7 @@
     CLI for generating Polybase Collections API code
 </p>
 
-## Install Polybase Gen
+## Install PolyGen
 
 ```bash
 go install github.com/durudex/polygen/cmd@latest
