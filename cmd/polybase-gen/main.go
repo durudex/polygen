@@ -10,6 +10,9 @@ package main
 import (
 	"os"
 
+	"github.com/durudex/polybase-gen/codegen"
+	"github.com/durudex/polybase-gen/config"
+
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
@@ -25,6 +28,15 @@ var (
 		Run: func(cmd *cobra.Command, args []string) {
 			if configPath == "" {
 				log.Fatal().Msg("Config file not specified!")
+			}
+
+			cfg, err := config.New(configPath)
+			if err != nil {
+				log.Fatal().Err(err).Msg("error parsing config file")
+			}
+
+			if err := codegen.New(cfg).Generate(); err != nil {
+				log.Fatal().Err(err).Msg("error generating code")
 			}
 		},
 	}
