@@ -10,6 +10,8 @@ package codegen
 import (
 	"context"
 
+	"github.com/durudex/polygen"
+
 	"github.com/alecthomas/participle/v2"
 	"github.com/durudex/go-polybase"
 	"github.com/durudex/go-polylang"
@@ -23,13 +25,8 @@ type GenesisCollection struct {
 }
 
 type ParsedCollection struct {
-	Models    []*Model
+	Models    []*polygen.Model
 	Functions []*ast.Function
-}
-
-type Model struct {
-	Name   string
-	Fields []*ast.Field
 }
 
 func (c *codegen) astCollection(ctx context.Context, id string) (*ast.Collection, error) {
@@ -48,16 +45,16 @@ func (c *codegen) astCollection(ctx context.Context, id string) (*ast.Collection
 
 func (c *codegen) parseCollection(v *ast.Collection) *ParsedCollection {
 	collection := &ParsedCollection{
-		Models: make([]*Model, 1),
+		Models: make([]*polygen.Model, 1),
 	}
 
-	collection.Models[0] = &Model{Name: v.Name}
+	collection.Models[0] = &polygen.Model{Name: v.Name}
 
 	for _, item := range v.Items {
 		switch {
 		case item.Field != nil:
 			if item.Field.Type.Object != nil {
-				collection.Models = append(collection.Models, &Model{
+				collection.Models = append(collection.Models, &polygen.Model{
 					Name:   item.Field.Name,
 					Fields: item.Field.Type.Object,
 				})

@@ -10,8 +10,8 @@ package main
 import (
 	"os"
 
-	"github.com/durudex/polybase-gen/codegen"
-	"github.com/durudex/polybase-gen/config"
+	"github.com/durudex/polygen/codegen"
+	"github.com/durudex/polygen/config"
 
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -22,9 +22,9 @@ var (
 	configPath string
 
 	root = &cobra.Command{
-		Use:   "polybase-gen",
+		Use:   "polygen",
 		Short: "CLI for generating Polybase Collections API code.",
-		Long:  "polybase-gen is a CLI that generates the API code of the collections you specify.",
+		Long:  "polygen is a CLI that generates the API code of the collections you specify.",
 		Run: func(cmd *cobra.Command, args []string) {
 			if configPath == "" {
 				log.Fatal().Msg("Config file not specified!")
