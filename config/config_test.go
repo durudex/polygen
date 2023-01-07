@@ -11,7 +11,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/durudex/polybase-gen/config"
+	"github.com/durudex/polygen/config"
 )
 
 func Test_New(t *testing.T) {

@@ -1,0 +1,31 @@
+{% import (
+	"github.com/durudex/polygen"
+	"github.com/durudex/polygen/language/golang/adapter"
+
+	"github.com/iancoleman/strcase"
+) %}
+
+{% func Model(models []*polygen.Model) %}
+{%- for _, model := range models -%}
+type {%s strcase.ToCamel(model.Name) %} struct {
+	{%- for _, field := range model.Fields -%}
+	{%s strcase.ToCamel(field.Name) %} {% stripspace %}
+	{% switch %}
+	{% case field.Type.Array %}
+		[]
+	{% case field.Type.Basic != 0 %}
+		{% if field.Optional && !field.Type.Array %}*{%- endif -%}
+		{%s adapter.TypeToString[field.Type.Basic] %}
+	{% case field.Type.Map != nil %}
+		map[{%s adapter.TypeToString[field.Type.Map.Key] %}]
+		{%s adapter.TypeToString[field.Type.Map.Value.Basic] %}
+	{% case field.Type.Object != nil %}
+		{% if field.Optional %}*{%- endif -%}
+		{%s strcase.ToCamel(field.Name) %}
+	{% endswitch %}
+	`json:"{%s field.Name %}{% if field.Optional %},omitempty{% endif %}"`
+	{% endstripspace %}
+	{%- endfor -%}
+}
+{%- endfor -%}
+{% endfunc %}

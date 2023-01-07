@@ -10,7 +10,7 @@ package codegen
 import (
 	"context"
 
-	"github.com/durudex/polybase-gen/config"
+	"github.com/durudex/polygen/config"
 
 	"github.com/durudex/go-polybase"
 )

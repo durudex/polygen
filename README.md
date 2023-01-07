@@ -1,4 +1,4 @@
-<h1 align="center">Polybase Gen</h1>
+<h1 align="center">PolyGen</h1>
 
 <p align="center">
     CLI for generating Polybase Collections API code
@@ -7,7 +7,7 @@
 ## Install Polybase Gen
 
 ```bash
-go install github.com/durudex/polybase-gen/cmd/polybase-gen@latest
+go install github.com/durudex/polygen/cmd@latest
 ```
 
 ## ⚠️ License
