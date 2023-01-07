@@ -38,6 +38,10 @@ func (g *golang) Generate(coll *polygen.ParsedCollection) error {
 	template.WriteHeader(f, coll.Name)
 	template.WriteModel(f, coll.Models)
 
+	for _, fc := range coll.Functions {
+		template.WriteInput(f, coll.Name, fc.Name, fc.Parameters)
+	}
+
 	return nil
 }
 
