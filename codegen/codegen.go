@@ -12,6 +12,7 @@ import (
 	"os"
 
 	"github.com/durudex/polygen/config"
+	"github.com/durudex/polygen/language"
 	"github.com/durudex/polygen/language/golang"
 
 	"github.com/durudex/go-polybase"
@@ -22,8 +23,9 @@ type Codegen interface {
 }
 
 type codegen struct {
-	cfg  *config.Config
-	coll polybase.Collection
+	cfg   *config.Config
+	langs []language.Codegen
+	coll  polybase.Collection
 }
 
 func New(cfg *config.Config) Codegen {
@@ -38,12 +40,10 @@ func New(cfg *config.Config) Codegen {
 }
 
 func (c *codegen) Generate() error {
-	var gn golang.Golang
-
 	if c.cfg.Language.Go != nil {
-		gn = golang.New(c.cfg.Language.Go)
+		c.langs = append(c.langs, golang.New(c.cfg.Language.Go))
 
-		if err := c.checkDir(c.cfg.Language.Go.Package); err != nil {
+		if err := c.checkDir(c.cfg.Language.Go.Directory); err != nil {
 			return err
 		}
 	}
@@ -56,10 +56,16 @@ func (c *codegen) Generate() error {
 
 		parsed := c.parseCollection(ast)
 
-		if c.cfg.Language.Go != nil {
-			if err := gn.Generate(parsed); err != nil {
+		for _, lang := range c.langs {
+			if err := lang.Generate(parsed); err != nil {
 				return err
 			}
+		}
+	}
+
+	for _, lang := range c.langs {
+		if err := lang.Finish(); err != nil {
+			return err
 		}
 	}
 
