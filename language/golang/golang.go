@@ -42,6 +42,7 @@ func (g *golang) Generate(coll *parser.ParsedCollection) error {
 
 	for _, fc := range coll.Functions {
 		template.WriteInput(f, coll.Name, fc.Name, fc.Parameters)
+		template.WriteFunction(f, coll.Name, fc)
 	}
 
 	return nil

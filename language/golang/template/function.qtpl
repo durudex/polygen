@@ -1,0 +1,19 @@
+{% import (
+	"github.com/durudex/go-polylang/ast"
+
+	"github.com/iancoleman/strcase"
+) %}
+
+{% func Function(coll string, fc *ast.Function) %}
+func (c *{%s strcase.ToLowerCamel(coll) %}) {%s strcase.ToCamel(fc.Name) %}({% stripspace %}
+	ctx context.Context {% if fc.Name != "constructor" %}, id string {% endif %},
+	input *{%s strcase.ToCamel(coll) + strcase.ToCamel(fc.Name) %}Input
+	{% endstripspace %}) (*polybase.SingleResponse[{%s strcase.ToCamel(coll) %}], error) {
+	var response polybase.SingleResponse[{%s strcase.ToCamel(coll) %}]
+	{%- if fc.Name == "constructor" -%}
+	return &response, c.coll.Create(ctx, polybase.ParseInput(input), &response)
+	{%- else -%}
+	return &response, c.coll.Record(id).Call(ctx, "{%s fc.Name %}", polybase.ParseInput(input), &response)
+	{%- endif -%}
+}
+{% endfunc %}
