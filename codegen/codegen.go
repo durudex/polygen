@@ -14,8 +14,7 @@ import (
 	"github.com/durudex/polygen/config"
 	"github.com/durudex/polygen/language"
 	"github.com/durudex/polygen/language/golang"
-
-	"github.com/durudex/go-polybase"
+	"github.com/durudex/polygen/parser"
 )
 
 type Codegen interface {
@@ -23,20 +22,13 @@ type Codegen interface {
 }
 
 type codegen struct {
-	cfg   *config.Config
-	langs []language.Codegen
-	coll  polybase.Collection
+	cfg    *config.Config
+	parser parser.Parser
+	langs  []language.Codegen
 }
 
 func New(cfg *config.Config) Codegen {
-	client := polybase.New(polybase.Config{
-		URL: polybase.TestnetURL,
-	})
-
-	return &codegen{
-		cfg:  cfg,
-		coll: client.Collection(GenesisCollectionID),
-	}
+	return &codegen{cfg: cfg, parser: parser.New()}
 }
 
 func (c *codegen) Generate() error {
@@ -49,12 +41,10 @@ func (c *codegen) Generate() error {
 	}
 
 	for _, id := range c.cfg.Collections {
-		ast, err := c.astCollection(context.Background(), id)
+		parsed, err := c.parser.Parse(context.Background(), id)
 		if err != nil {
 			return err
 		}
-
-		parsed := c.parseCollection(ast)
 
 		for _, lang := range c.langs {
 			if err := lang.Generate(parsed); err != nil {

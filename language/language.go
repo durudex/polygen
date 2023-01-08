@@ -7,9 +7,9 @@
 
 package language
 
-import "github.com/durudex/polygen"
+import "github.com/durudex/polygen/parser"
 
 type Codegen interface {
-	Generate(*polygen.ParsedCollection) error
+	Generate(*parser.ParsedCollection) error
 	Finish() error
 }
