@@ -12,10 +12,10 @@ import (
 	"os/exec"
 	"path/filepath"
 
-	"github.com/durudex/polygen"
 	"github.com/durudex/polygen/config"
 	"github.com/durudex/polygen/language"
 	"github.com/durudex/polygen/language/golang/template"
+	"github.com/durudex/polygen/parser"
 
 	"github.com/iancoleman/strcase"
 )
@@ -26,7 +26,7 @@ func New(cfg *config.Go) language.Codegen {
 	return &golang{cfg: cfg}
 }
 
-func (g *golang) Generate(coll *polygen.ParsedCollection) error {
+func (g *golang) Generate(coll *parser.ParsedCollection) error {
 	path := g.cfg.Directory + "/" + strcase.ToSnake(coll.Name) + "_gen.go"
 
 	f, err := os.Create(path)
