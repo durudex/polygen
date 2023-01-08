@@ -1,0 +1,19 @@
+{% import "github.com/iancoleman/strcase" %}
+
+{% func Client(names []string) %}
+import "github.com/durudex/go-polybase"
+
+type Client struct {
+	{%- for _, name := range names -%}
+	{%s strcase.ToCamel(name) %} I{%s strcase.ToCamel(name) %}
+	{%- endfor -%}
+}
+
+func New(db polybase.Polybase) *Client {
+	return &Client{
+		{%- for _, name := range names -%}
+		{%s strcase.ToCamel(name) %}: New{%s strcase.ToCamel(name) %}(db),
+		{%- endfor -%}
+	}
+}
+{% endfunc %}

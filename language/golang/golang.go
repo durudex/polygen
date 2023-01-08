@@ -20,7 +20,10 @@ import (
 	"github.com/iancoleman/strcase"
 )
 
-type golang struct{ cfg *config.Go }
+type golang struct {
+	cfg   *config.Go
+	names []string
+}
 
 func New(cfg *config.Go) language.Codegen {
 	return &golang{cfg: cfg}
@@ -35,7 +38,9 @@ func (g *golang) Generate(coll *parser.ParsedCollection) error {
 	}
 	defer f.Close()
 
-	template.WriteHeader(f, coll.Name)
+	g.names = append(g.names, coll.Name)
+
+	template.WriteHeader(f, g.cfg.Package)
 	template.WriteImport(f)
 	template.WriteModel(f, coll.Models)
 	template.WriteCollection(f, coll.ID, coll.Name, coll.Functions)
@@ -49,10 +54,27 @@ func (g *golang) Generate(coll *parser.ParsedCollection) error {
 }
 
 func (g *golang) Finish() error {
+	if err := g.genClient(); err != nil {
+		return err
+	}
+
 	dir, err := os.Getwd()
 	if err != nil {
 		return err
 	}
 
 	return exec.Command("go", "fmt", filepath.Join(dir, g.cfg.Directory)).Run()
+}
+
+func (g *golang) genClient() error {
+	f, err := os.Create(g.cfg.Directory + "/client_gen.go")
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	template.WriteHeader(f, g.cfg.Directory)
+	template.WriteClient(f, g.names)
+
+	return nil
 }
