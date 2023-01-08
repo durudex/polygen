@@ -38,3 +38,26 @@ func Header(name string) string {
 	qt422016.ReleaseByteBuffer(qb422016)
 	return qs422016
 }
+
+func StreamImport(qw422016 *qt422016.Writer) {
+	qw422016.N().S(`import (
+	"context"
+
+	"github.com/durudex/go-polybase"
+)
+`)
+}
+
+func WriteImport(qq422016 qtio422016.Writer) {
+	qw422016 := qt422016.AcquireWriter(qq422016)
+	StreamImport(qw422016)
+	qt422016.ReleaseWriter(qw422016)
+}
+
+func Import() string {
+	qb422016 := qt422016.AcquireByteBuffer()
+	WriteImport(qb422016)
+	qs422016 := string(qb422016.B)
+	qt422016.ReleaseByteBuffer(qb422016)
+	return qs422016
+}

@@ -1,0 +1,22 @@
+{% import (
+	"github.com/durudex/go-polylang/ast"
+
+	"github.com/iancoleman/strcase"
+) %}
+
+{% func Collection(id, coll string, funcs []*ast.Function) %}
+type I{%s strcase.ToCamel(coll) %} interface {
+	{%- for _, fc := range funcs -%}
+	{%s strcase.ToCamel(fc.Name) %}(ctx context.Context {% stripspace %}
+		{% if fc.Name != "constructor" %}, id string {% endif %},
+		input *{%s strcase.ToCamel(coll) + strcase.ToCamel(fc.Name) %}Input
+	{% endstripspace %}) (*polybase.SingleResponse[{%s strcase.ToCamel(coll) %}], error)
+	{%- endfor -%}
+}
+
+type {%s strcase.ToLowerCamel(coll) %} struct{ coll polybase.Collection }
+
+func New{%s strcase.ToCamel(coll) %}(db polybase.Polybase) I{%s strcase.ToCamel(coll) %} {
+	return &{%s strcase.ToLowerCamel(coll) %}{coll: db.Collection("{%s id %}")}
+}
+{% endfunc %}
