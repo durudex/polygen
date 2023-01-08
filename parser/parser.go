@@ -19,6 +19,7 @@ import (
 )
 
 type ParsedCollection struct {
+	ID        string
 	Name      string
 	Models    []*polygen.Model
 	Functions []*ast.Function
@@ -45,6 +46,7 @@ func (p *parser) Parse(ctx context.Context, id string) (*ParsedCollection, error
 	}
 
 	collection := &ParsedCollection{
+		ID:     id,
 		Name:   collAst.Name,
 		Models: make([]*polygen.Model, 1),
 	}

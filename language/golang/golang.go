@@ -36,7 +36,9 @@ func (g *golang) Generate(coll *parser.ParsedCollection) error {
 	defer f.Close()
 
 	template.WriteHeader(f, coll.Name)
+	template.WriteImport(f)
 	template.WriteModel(f, coll.Models)
+	template.WriteCollection(f, coll.ID, coll.Name, coll.Functions)
 
 	for _, fc := range coll.Functions {
 		template.WriteInput(f, coll.Name, fc.Name, fc.Parameters)

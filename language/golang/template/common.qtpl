@@ -5,3 +5,11 @@
 
 package {%s strcase.ToSnake(name) %}
 {% endfunc %}
+
+{%- func Import() -%}
+import (
+	"context"
+
+	"github.com/durudex/go-polybase"
+)
+{% endfunc %}
