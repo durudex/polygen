@@ -16,7 +16,7 @@ import (
 type (
 	Config struct {
 		Collections []string `yaml:"collection"`
-		PolyGen     *PolyGen `yaml:"polygen"`
+		PolyGen     PolyGen  `yaml:"polygen"`
 		Language    Language `yaml:"language"`
 	}
 

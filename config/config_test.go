@@ -17,7 +17,7 @@ import (
 func Test_New(t *testing.T) {
 	want := &config.Config{
 		Collections: []string{"durudex/user", "durudex/post"},
-		PolyGen:     &config.PolyGen{ClearDirectory: true},
+		PolyGen:     config.PolyGen{ClearDirectory: true},
 		Language: config.Language{
 			Go: &config.Go{
 				Package:   "generated",
