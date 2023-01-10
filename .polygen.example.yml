@@ -1,0 +1,9 @@
+# List of collections for which you want to generate code.
+collection:
+  - "Collection"
+  - "Namespace/Collection"
+
+language:
+  go:
+    package: "package_name"
+    directory: "directory/to/save"
