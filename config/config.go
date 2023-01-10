@@ -16,7 +16,12 @@ import (
 type (
 	Config struct {
 		Collections []string `yaml:"collection"`
+		PolyGen     *PolyGen `yaml:"polygen"`
 		Language    Language `yaml:"language"`
+	}
+
+	PolyGen struct {
+		ClearDirectory bool `yaml:"clear-directory"`
 	}
 
 	Language struct {

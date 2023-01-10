@@ -63,9 +63,14 @@ func (c *codegen) Generate() error {
 }
 
 func (c *codegen) checkDir(path string) error {
+	if c.cfg.PolyGen.ClearDirectory {
+		if err := os.RemoveAll(path); err != nil {
+			return err
+		}
+	}
+
 	if err := os.MkdirAll(path, 0755); err != nil {
 		if os.IsExist(err) {
-			// TODO: add delete old files by option
 			return nil
 		}
 

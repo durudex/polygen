@@ -3,6 +3,11 @@ collection:
   - "Collection"
   - "Namespace/Collection"
 
+polygen:
+  # This option will clean the specified directory before starting the build,
+  # this can help to clean the directory of old and unnecessary files.
+  clear-directory: true
+
 language:
   go:
     package: "package_name"

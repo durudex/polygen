@@ -2,6 +2,9 @@ collection:
   - "durudex/user"
   - "durudex/post"
 
+polygen:
+  clear-directory: true
+
 language:
   go:
     package: "generated"
