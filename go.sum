@@ -8,8 +8,14 @@ github.com/coreos/go-systemd/v22 v22.3.3-0.20220203105225-a9a7ef127534/go.mod h1
 github.com/cpuguy83/go-md2man/v2 v2.0.2/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
 github.com/durudex/go-polybase v0.0.0-20230101154909-ddda04565735 h1:BB0Baftijl4WCgpfJ2LygDGWJ8eY4a3VMn+7NVNJOB4=
 github.com/durudex/go-polybase v0.0.0-20230101154909-ddda04565735/go.mod h1:4VSG2cSGkFirmbRiLqnlToJEBt1WLoG2SGmV/DC72RQ=
+github.com/durudex/go-polybase v0.0.0-20230121175101-69f5ae5896f6 h1:qFDDj6UVbCzP/jaMsMHzA8w8XAOGU5DNnHL4GeGEb8Q=
+github.com/durudex/go-polybase v0.0.0-20230121175101-69f5ae5896f6/go.mod h1:4VSG2cSGkFirmbRiLqnlToJEBt1WLoG2SGmV/DC72RQ=
 github.com/durudex/go-polylang v0.0.0-20230107180402-fae5fcac0a78 h1:YRtd0UgyMbYB11tBFuM3NT2OnsZLSbAb1zWC/1aRePs=
 github.com/durudex/go-polylang v0.0.0-20230107180402-fae5fcac0a78/go.mod h1:pm/l+1LJ11mEO4qu5okilKwhkjpQCuYczciaMCixE74=
+github.com/durudex/go-polylang v0.0.0-20230121224515-0343e48a29e4 h1:BnnAQZAejy6SQBEpXhZ33cZQObQtVEhae2U/0CcOkPE=
+github.com/durudex/go-polylang v0.0.0-20230121224515-0343e48a29e4/go.mod h1:pm/l+1LJ11mEO4qu5okilKwhkjpQCuYczciaMCixE74=
+github.com/durudex/go-polylang v0.0.0-20230122165028-aae49c86e12a h1:en6OAJwp9LMBJSpgHFHFfa8tuj+wkuIt20dDJktTAOM=
+github.com/durudex/go-polylang v0.0.0-20230122165028-aae49c86e12a/go.mod h1:pm/l+1LJ11mEO4qu5okilKwhkjpQCuYczciaMCixE74=
 github.com/godbus/dbus/v5 v5.0.4/go.mod h1:xhWf0FNVPg57R7Z0UbKHbJfkEywrmjJnf7w5xrFpKfA=
 github.com/golang/snappy v0.0.3/go.mod h1:/XxbfmMg8lxefKM7IXC3fBNl/7bRcc72aCRzEWrmP2Q=
 github.com/hexops/gotextdiff v1.0.3 h1:gitA9+qJrrTCsiCl7+kh75nPqQt1cx4ZkudSTLoUqJM=
