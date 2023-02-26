@@ -19,6 +19,8 @@ To start using PolyGen, you need to create a configuration file. It defines the 
 [**An example of a configuration file:**](https://github.com/durudex/polygen/blob/main/.polygen.example.yml)
 
 ```yml
+# .polygen.yml
+
 collection:
   - "Collection"
   - "Namespace/Collection"
