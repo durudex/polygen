@@ -9,10 +9,10 @@ type Client struct {
 	{%- endfor -%}
 }
 
-func New(db polybase.Polybase) *Client {
+func New(client polybase.Client) *Client {
 	return &Client{
 		{%- for _, name := range names -%}
-		{%s strcase.ToCamel(name) %}: New{%s strcase.ToCamel(name) %}(db),
+		{%s strcase.ToCamel(name) %}: New{%s strcase.ToCamel(name) %}(client),
 		{%- endfor -%}
 	}
 }

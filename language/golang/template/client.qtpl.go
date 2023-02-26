@@ -32,7 +32,7 @@ type Client struct {
 	}
 	qw422016.N().S(`}
 
-func New(db polybase.Polybase) *Client {
+func New(client polybase.Client) *Client {
 	return &Client{
 `)
 	for _, name := range names {
@@ -40,7 +40,7 @@ func New(db polybase.Polybase) *Client {
 		qw422016.E().S(strcase.ToCamel(name))
 		qw422016.N().S(`: New`)
 		qw422016.E().S(strcase.ToCamel(name))
-		qw422016.N().S(`(db),
+		qw422016.N().S(`(client),
 `)
 	}
 	qw422016.N().S(`	}

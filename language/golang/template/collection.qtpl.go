@@ -36,25 +36,29 @@ type I`)
 		qw422016.N().S(`,input *`)
 		qw422016.E().S(strcase.ToCamel(coll) + strcase.ToCamel(fc.Name))
 		qw422016.N().S(`Input`)
-		qw422016.N().S(`) (*polybase.SingleResponse[`)
+		qw422016.N().S(`) *polybase.SingleResponse[`)
 		qw422016.E().S(strcase.ToCamel(coll))
-		qw422016.N().S(`], error)
+		qw422016.N().S(`]
 `)
 	}
 	qw422016.N().S(`}
 
 type `)
 	qw422016.E().S(strcase.ToLowerCamel(coll))
-	qw422016.N().S(` struct{ coll polybase.Collection }
+	qw422016.N().S(` struct{ coll polybase.Collection[`)
+	qw422016.E().S(strcase.ToCamel(coll))
+	qw422016.N().S(`] }
 
 func New`)
 	qw422016.E().S(strcase.ToCamel(coll))
-	qw422016.N().S(`(db polybase.Polybase) I`)
+	qw422016.N().S(`(client polybase.Client) I`)
 	qw422016.E().S(strcase.ToCamel(coll))
 	qw422016.N().S(` {
 	return &`)
 	qw422016.E().S(strcase.ToLowerCamel(coll))
-	qw422016.N().S(`{coll: db.Collection("`)
+	qw422016.N().S(`{coll: polybase.NewCollection[`)
+	qw422016.E().S(strcase.ToCamel(coll))
+	qw422016.N().S(`](client, "`)
 	qw422016.E().S(id)
 	qw422016.N().S(`")}
 }

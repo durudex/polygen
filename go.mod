@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/alecthomas/participle/v2 v2.0.0-beta.5
-	github.com/durudex/go-polybase v0.0.0-20230121175101-69f5ae5896f6
+	github.com/durudex/go-polybase v0.0.2
 	github.com/durudex/go-polylang v0.0.0-20230122165028-aae49c86e12a
 	github.com/iancoleman/strcase v0.2.0
 	github.com/rs/zerolog v1.28.0

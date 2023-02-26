@@ -73,7 +73,7 @@ func (g *golang) genClient() error {
 	}
 	defer f.Close()
 
-	template.WriteHeader(f, g.cfg.Directory)
+	template.WriteHeader(f, g.cfg.Package)
 	template.WriteClient(f, g.names)
 
 	return nil

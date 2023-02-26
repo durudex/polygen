@@ -10,13 +10,13 @@ type I{%s strcase.ToCamel(coll) %} interface {
 	{%s strcase.ToCamel(fc.Name) %}(ctx context.Context {% stripspace %}
 		{% if fc.Name != "constructor" %}, id string {% endif %},
 		input *{%s strcase.ToCamel(coll) + strcase.ToCamel(fc.Name) %}Input
-	{% endstripspace %}) (*polybase.SingleResponse[{%s strcase.ToCamel(coll) %}], error)
+	{% endstripspace %}) *polybase.SingleResponse[{%s strcase.ToCamel(coll) %}]
 	{%- endfor -%}
 }
 
-type {%s strcase.ToLowerCamel(coll) %} struct{ coll polybase.Collection }
+type {%s strcase.ToLowerCamel(coll) %} struct{ coll polybase.Collection[{%s strcase.ToCamel(coll) %}] }
 
-func New{%s strcase.ToCamel(coll) %}(db polybase.Polybase) I{%s strcase.ToCamel(coll) %} {
-	return &{%s strcase.ToLowerCamel(coll) %}{coll: db.Collection("{%s id %}")}
+func New{%s strcase.ToCamel(coll) %}(client polybase.Client) I{%s strcase.ToCamel(coll) %} {
+	return &{%s strcase.ToLowerCamel(coll) %}{coll: polybase.NewCollection[{%s strcase.ToCamel(coll) %}](client, "{%s id %}")}
 }
 {% endfunc %}

@@ -34,20 +34,17 @@ func (c *`)
 	qw422016.N().S(`,input *`)
 	qw422016.E().S(strcase.ToCamel(coll) + strcase.ToCamel(fc.Name))
 	qw422016.N().S(`Input`)
-	qw422016.N().S(`) (*polybase.SingleResponse[`)
+	qw422016.N().S(`) *polybase.SingleResponse[`)
 	qw422016.E().S(strcase.ToCamel(coll))
-	qw422016.N().S(`], error) {
-	var response polybase.SingleResponse[`)
-	qw422016.E().S(strcase.ToCamel(coll))
-	qw422016.N().S(`]
+	qw422016.N().S(`] {
 `)
 	if fc.Name == "constructor" {
-		qw422016.N().S(`	return &response, c.coll.Create(ctx, polybase.ParseInput(input), &response)
+		qw422016.N().S(`	return c.coll.Create(ctx, polybase.ParseInput(input))
 `)
 	} else {
-		qw422016.N().S(`	return &response, c.coll.Record(id).Call(ctx, "`)
+		qw422016.N().S(`	return c.coll.Record(id).Call(ctx, "`)
 		qw422016.E().S(fc.Name)
-		qw422016.N().S(`", polybase.ParseInput(input), &response)
+		qw422016.N().S(`", polybase.ParseInput(input))
 `)
 	}
 	qw422016.N().S(`}

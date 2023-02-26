@@ -29,14 +29,20 @@ type Parser interface {
 	Parse(ctx context.Context, id string) (*ParsedCollection, error)
 }
 
-type parser struct{ coll polybase.Collection }
+type parser struct {
+	coll polybase.Collection[polygen.GenesisCollection]
+}
 
 func New() Parser {
-	client := polybase.New(polybase.Config{
+	client := polybase.New(&polybase.Config{
 		URL: polybase.TestnetURL,
 	})
+	coll := polybase.NewCollection[polygen.GenesisCollection](
+		client,
+		polygen.GenesisCollectionID,
+	)
 
-	return &parser{coll: client.Collection(polygen.GenesisCollectionID)}
+	return &parser{coll: coll}
 }
 
 func (p *parser) Parse(ctx context.Context, id string) (*ParsedCollection, error) {
@@ -78,11 +84,7 @@ func (p *parser) Parse(ctx context.Context, id string) (*ParsedCollection, error
 }
 
 func (p *parser) astCollection(ctx context.Context, id string) (*ast.Collection, error) {
-	var response polybase.SingleResponse[polygen.GenesisCollection]
-
-	if err := p.coll.Record(id).Get(ctx, &response); err != nil {
-		return nil, err
-	}
+	response := p.coll.Record(id).Get(ctx)
 
 	parser := participle.MustBuild[ast.Collection](
 		participle.Lexer(polylang.Lexer),
